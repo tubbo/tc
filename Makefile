@@ -4,7 +4,6 @@ _build:
 	@mix
 
 deps:
-	@brew bundle
 	@mix deps.get
 
 ${HOME}/.nerves/systems/nerves/rpi2-0.4.0-rc2:
@@ -27,5 +26,8 @@ clean:
 	@bake toolchain clean
 	@bake firmware clean
 	@rm -r _build deps node_modules
+
+server:
+	@mix phoenix.server
 
 .PHONY: all clean firmware install database
