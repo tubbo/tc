@@ -11,11 +11,16 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "deps/phoenix_html/web/static/js/phoenix_html"
+// import "deps/phoenix_html/web/static/js/phoenix_html"
+
+import React from 'react';
 
 // Import local files
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+import socket from './socket';
+import Dashboard from './dashboard';
+
+React.render(<Dashboard />, document.getElementById('dashboard'));

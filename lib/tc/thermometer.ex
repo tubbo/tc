@@ -1,4 +1,9 @@
 defmodule Tc.Thermometer do
+  @moduledoc """
+  Senses temperature using the DS18B20 and reports the current degrees
+  in Fahrenheit.
+  """
+
   alias Tc.Temperature
   alias Tc.Thermostat
   alias Tc.Repo

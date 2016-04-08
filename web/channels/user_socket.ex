@@ -2,7 +2,7 @@ defmodule Tc.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Tc.RoomChannel
+  channel "temperature:readings", Tc.TemperatureChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
