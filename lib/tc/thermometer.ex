@@ -7,7 +7,7 @@ defmodule Tc.Thermometer do
   end
 
   def change(temperature) do
-    if temperature
+    if temperature do
       Tc.Thermostat.heat_on
     else
       Tc.Thermostat.heat_off

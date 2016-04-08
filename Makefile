@@ -1,33 +1,40 @@
-all: deps _build ${HOME}/.nerves/systems/nerves/rpi2-0.4.0-rc2 toolchain firmware ${HOME}/.nerves/toolchains/nerves-arm-unknown-linux-gnueabihf-darwin-x86_64-v0.6.0 database
+#
+# tc build script
+#
 
-_build:
-	@mix
+# Compile tc for use on a Raspberry Pi
+all: deps build ${HOME}/.nerves/systems/nerves/rpi2-0.4.0-rc2 ${HOME}/.nerves/toolchains/nerves-arm-unknown-linux-gnueabihf-darwin-x86_64-v0.6.0 priv/repo/db.sqlite3 firmware
 
+# Pull down Elixir dependencies
 deps:
 	@mix deps.get
 
+# Compile Elixir app
+build:
+	@mix
+
+# Install the Raspberry Pi system
 ${HOME}/.nerves/systems/nerves/rpi2-0.4.0-rc2:
 	@bake system get
 
+# Install the Raspberry Pi 2 toolchain
 ${HOME}/.nerves/toolchains/nerves-arm-unknown-linux-gnueabihf-darwin-x86_64-v0.6.0:
 	@bake toolchain get
 
-database:
-	@mix do ecto.create, ecto.migrate, ecto.seed
+# Install the database
+priv/repo/db.sqlite3:
+	@mix do ecto.create, ecto.migrate
 
+# Compile the Raspberry Pi 2 firmware that includes this application
 firmware:
 	@bake firmware
 
+# Install the compiled firmware to the Raspberry Pi
 install:
 	@bake burn
 
-clean:
-	@bake system clean
-	@bake toolchain clean
-	@bake firmware clean
-	@rm -r _build deps node_modules
-
-server:
+# Start a local development server.
+server: deps _build database
 	@mix phoenix.server
 
-.PHONY: all clean firmware install database
+.PHONY: all deps build firmware install db/tc.sqlite3 server

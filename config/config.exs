@@ -27,3 +27,8 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+# Configure ORM for Sqlite
+config :tc, Tc.Repo,
+  adapter: Sqlite.Ecto,
+  database: "priv/repo/db.sqlite3"
