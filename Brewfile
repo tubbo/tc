@@ -1,2 +1,0 @@
-brew 'elixir'
-brew 'postgresql'
