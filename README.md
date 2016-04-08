@@ -5,10 +5,13 @@ A headless thermostat controlled by a web application running on the
 
 ## Installation
 
-To compile this application:
+Clone down the repository:
 
     git clone https://github.com/tubbo/tc.git
     cd tc
+
+Compile the Elixir application and Raspberry Pi firmware:
+
     make
 
 Installing requires that you have your Raspberry Pi plugged in:

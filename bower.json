@@ -1,0 +1,21 @@
+{
+  "name": "tc",
+  "description": "temperature control",
+  "main": "priv/static/app.js",
+  "authors": [
+    "Tom Scott <tscott@weblinc.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tubbo/tc",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.0.0"
+  }
+}

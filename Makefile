@@ -3,14 +3,14 @@
 #
 
 # Compile tc for use on a Raspberry Pi
-all: deps build ${HOME}/.nerves/systems/nerves/rpi2-0.4.0-rc2 ${HOME}/.nerves/toolchains/nerves-arm-unknown-linux-gnueabihf-darwin-x86_64-v0.6.0 priv/repo/db.sqlite3 firmware
+all: deps _build ${HOME}/.nerves/systems/nerves/rpi2-0.4.0-rc2 ${HOME}/.nerves/toolchains/nerves-arm-unknown-linux-gnueabihf-darwin-x86_64-v0.6.0 priv/repo/db.sqlite3 firmware
 
 # Pull down Elixir dependencies
 deps:
 	@mix deps.get
 
 # Compile Elixir app
-build:
+_build:
 	@mix
 
 # Install the Raspberry Pi system
@@ -41,4 +41,4 @@ server: priv/repo/db.sqlite3
 clean:
 	@rm -rf ${HOME}/.nerves _build deps
 
-.PHONY: all deps build firmware install server clean
+.PHONY: all firmware install server clean

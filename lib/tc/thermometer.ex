@@ -1,20 +1,27 @@
 defmodule Tc.Thermometer do
-  # @current_temperature 0
+  alias Tc.Temperature
+  alias Tc.Thermostat
+  alias Tc.Repo
 
-  # alias Tc.Temperature
-  # alias Tc.Thermostat
+  def start(_type, _args) do
+    desired = Repo.get! Temperature, 1
 
-  # def start(_type, _args) do
-  #   desired_temperature = Repo.get!(Temperature, 1)
-  #   spawn fn -> compare(desired_temperature)
-  #   {:ok, self}
-  # end
+    if current_temperature == desired.degrees do
+      Thermostat.deactivate desired.system
+    else
+      Thermostat.activate desired.system
+    end
+  end
 
-  # def compare(desired_temperature) do
-  #   if desired_temperature.degrees != current_temperature
-  #     Thermostat.activate(desired_temperature.system)
-  #   else
-  #     Thermostat.decativate(desired_temperature.system)
-  #   end
-  # end
+  def current_temperature do
+    device_file = File.read! "/sys/bus/w1/devices/28XXX"
+    lines = String.split device_file, "\n"
+    status = lines[0]
+
+    if status == 'YES' do
+      lines[1]
+    else
+      0
+    end
+  end
 end
