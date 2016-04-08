@@ -1,16 +1,36 @@
 defmodule Tc.Thermometer do
+  alias Tc.Temperature
+  alias Tc.Thermostat
+
   @moduledoc """
   Receives signals when temperature changes.
   """
 
-  def start(_type, _args) do
+  def initialize do
+    :ets.new :current_temperature
   end
 
-  def change(temperature) do
-    if temperature do
-      Tc.Thermostat.heat_on
+  def start(_type, _args) do
+    desired_temperature = Repo.get!(Temperature, 1)
+    spawn fn -> compare(desired_temperature)
+  end
+
+  @doc """
+  Return the current temperature.
+  """
+  def current_temperature do
+    :ets.get :current_temperature
+  end
+
+  @doc """
+  Compare the desired Temperature with the current amount and elect to
+  either activate or deactivate the currently chosen system.
+  """
+  def compare(desired_temperature) do
+    if desired_temperature.degrees != current_temperature do
+      Thermostat.activate desired_temperature.system
     else
-      Tc.Thermostat.heat_off
+      Thermostat.decativate desired_temperature.system
     end
   end
 end

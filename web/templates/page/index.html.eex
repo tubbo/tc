@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1>Currently <%= Tc.Thermometer.temperature %>&deg; F</h1>
+  <h1>Currently <%= Tc.Thermometer.current_temperature %>&deg; F</h1>
   <h2>Desired <%= @desired_temperature.degrees %>&deg; F</h1>
 </div>
 

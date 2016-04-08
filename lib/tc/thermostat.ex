@@ -1,20 +1,30 @@
 defmodule Tc.Thermostat do
   @moduledoc """
-  Starts and stops A/C as well as heat.
+  Controls heat and air conditioning.
   """
 
-  def start(_type, _args) do
+  @app :tc_thermostat
+
+  @systems [
+    heat: [],
+    cool: []
+  ]
+
+  def initialize do
+    :ets.new :temperature_control, [:set, :public, :named_table]
   end
 
-  def heat_on do
+  @doc """
+  Activate the currently chosen system.
+  """
+  def activate(system) do
+    :ets.insert :temperature_control, [{:on, system}]
   end
 
-  def heat_off do
-  end
-
-  def ac_on do
-  end
-
-  def ac_off do
+  @doc """
+  Deactivate the currently chosen system.
+  """
+  def deactivate(system) do
+    :ets.insert :temperature_control, [{:off, system}]
   end
 end
