@@ -24,6 +24,7 @@ ${HOME}/.nerves/toolchains/nerves-arm-unknown-linux-gnueabihf-darwin-x86_64-v0.6
 # Install the database
 priv/repo/db.sqlite3:
 	@mix do ecto.create, ecto.migrate
+	@mix run priv/repo/seeds.exs
 
 # Compile the Raspberry Pi 2 firmware that includes this application
 firmware:
