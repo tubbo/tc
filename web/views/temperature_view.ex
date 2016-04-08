@@ -1,6 +1,8 @@
 defmodule Tc.TemperatureView do
   use Tc.Web, :view
 
+  alias Tc.Thermometer
+
   def render("index.json", %{temperature: temperature}) do
     %{data: render_many(temperature, Tc.TemperatureView, "temperature.json")}
   end
@@ -10,7 +12,10 @@ defmodule Tc.TemperatureView do
   end
 
   def render("temperature.json", %{temperature: temperature}) do
-    %{id: temperature.id,
-      degrees: temperature.degrees}
+    %{
+      desired: temperature.degrees,
+      current: Thermometer.current_temperature,
+      system: temperature.system or 'off',
+    }
   end
 end

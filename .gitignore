@@ -25,3 +25,6 @@ erl_crash.dump
 
 # Database
 priv/repo/db.sqlite3
+
+# Build Tools
+rebar

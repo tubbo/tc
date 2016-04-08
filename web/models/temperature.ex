@@ -3,12 +3,13 @@ defmodule Tc.Temperature do
 
   schema "temperature" do
     field :degrees, :float
+    field :system, :string
 
     timestamps
   end
 
   @required_fields ~w(degrees)
-  @optional_fields ~w()
+  @optional_fields ~w(system)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
