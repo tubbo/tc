@@ -34,7 +34,10 @@ install:
 	@bake burn
 
 # Start a local development server.
-server: deps _build database
+server: priv/repo/db.sqlite3
 	@mix phoenix.server
 
-.PHONY: all deps build firmware install db/tc.sqlite3 server
+clean:
+	@rm -rf ${HOME}/.nerves _build deps
+
+.PHONY: all deps build firmware install server clean
