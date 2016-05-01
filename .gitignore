@@ -29,3 +29,7 @@ priv/repo/db.sqlite3
 
 # Build Tools
 rebar
+
+# Releases
+_images
+rel
