@@ -35,6 +35,7 @@ defmodule Tc.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:exrm, "~> 0.18.1"},
      {:cowboy, "~> 1.0"}]
   end
 end
