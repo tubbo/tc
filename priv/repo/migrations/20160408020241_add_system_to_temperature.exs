@@ -2,7 +2,7 @@ defmodule Tc.Repo.Migrations.AddSystemToTemperature do
   use Ecto.Migration
 
   def change do
-    update table(:temperature) do
+    alter table(:temperature) do
       add :system, :string
     end
   end
