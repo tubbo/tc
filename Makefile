@@ -1,7 +1,3 @@
-#
-# tc build script
-#
-
 PREFIX?=/usr/local
 
 # Compile tc for use on a Raspberry Pi
@@ -50,5 +46,10 @@ server: priv/repo/db.sqlite3
 # Run all tests.
 test: deps
 	@mix test
+
+# Release the current version to GitHub.
+release:
+	@git tag "v$(mix run -e 'IO.puts Mix.Project.config[:version]')"
+	@git push --tags
 
 .PHONY: all build clean install server test

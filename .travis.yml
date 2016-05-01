@@ -4,7 +4,7 @@ script: make test
 before_deploy: make
 deploy:
   provider: releases
-  file: pkg.tar.gz
+  file: _images/tc-rpi2.fw
   skip_cleanup: true
   on:
     tags: true
