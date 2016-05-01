@@ -2,12 +2,10 @@
 # tc build script
 #
 
-NAME?=tc
-VERSION?=0.1.0
 PREFIX?=/usr/local
 
 # Compile tc for use on a Raspberry Pi
-all: clean firmware pkg/tc-${VERSION}.tar.gz
+all: clean firmware
 
 # Remove build artifacts.
 clean:
@@ -31,10 +29,10 @@ firmware: ${PREFIX}/bin/bake
 	@bake toolchain get
 	@bake firmware
 
-# Package the firmware into a tarball for distribution.
-pkg/$NAME-$VERSION.tar.gz:
-	@mkdir -p pkg
-	@tar -czf pkg/${NAME}-${VERSION}.tar.gz firmware
+# # Package the firmware into a tarball for distribution.
+# pkg/${NAME}-${VERSION}.tar.gz:
+# 	@mkdir -p pkg
+# 	@tar -czf pkg/${NAME}-${VERSION}.tar.gz firmware
 
 # Install the compiled firmware to the Raspberry Pi
 install:
