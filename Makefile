@@ -5,11 +5,11 @@
 PREFIX?=/usr/local
 
 # Compile tc for use on a Raspberry Pi
-all: clean firmware
+all: clean _images/tc-rpi2.fw
 
 # Remove build artifacts.
 clean:
-	@rm -rf firmware pkg
+	@rm -rf _images/tc-rpi2.fw
 
 # Pull down Elixir dependencies
 deps:
@@ -24,7 +24,7 @@ $PREFIX/bin/bake:
 	@ruby -e "$(curl -fsSL https://bakeware.herokuapp.com/bake/install)"
 
 # Compile the Raspberry Pi 2 firmware that includes this application
-firmware: ${PREFIX}/bin/bake
+_images/tc-rpi2.fw: ${PREFIX}/bin/bake
 	@bake system get
 	@bake toolchain get
 	@bake firmware
